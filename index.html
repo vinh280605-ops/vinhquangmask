@@ -22,772 +22,838 @@
             href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap"
             rel="stylesheet"
         />
+        <style>
+            #mobile-warning {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000; /* Màu nền đen */
+                color: #fff;
+                z-index: 9999; /* Luôn nằm trên cùng */
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            @media screen and (max-width: 1024px) {
+                /* Hiện thông báo chặn */
+                #mobile-warning {
+                    display: flex;
+                }
+
+                /* Ẩn toàn bộ nội dung web chính */
+                #main-content {
+                    display: none !important;
+                }
+            }
+        </style>
     </head>
     <body>
-        <main>
-            <header class="fixed-header">
-                <div class="content">
-                    <nav class="navbar">
-                        <!-- logo -->
-                        <a href="#">
-                            <img
-                                class="logo"
-                                src="./asset/img/LOGO VINH QUANG_JPG-01-Photoroom.png"
-                                alt="logo"
-                            />
-                        </a>
-                        <!-- Navigation -->
-                        <ul>
-                            <li><a href="#!">Home</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
-                            <li><a href="#!">Wholesale</a></li>
-                            <li><a href="#!">Certifications</a></li>
-                            <li><a href="#!">Contact</a></li>
-                        </ul>
-                        <!-- Action -->
-                        <div class="actions">
-                            <a
-                                href="#!"
-                                class="actions-link"
-                                onclick="openModal('loginModal')"
-                                >Sign in</a
-                            >
-                            <a
-                                href="#!"
-                                class="btn actions-btn"
-                                onclick="openModal('registerModal')"
-                                >Sign up</a
-                            >
-                        </div>
-                        <!-- LOGIN MODAL -->
-                        <div id="loginModal" class="modal">
-                            <div
-                                class="modal-overlay"
-                                onclick="closeModal('loginModal')"
-                            ></div>
-                            <div class="modal-container">
-                                <button
-                                    class="close-btn"
-                                    onclick="closeModal('loginModal')"
+        <div id="mobile-warning">
+            <h1>Vui lòng sử dụng máy tính</h1>
+            <p>Trang web này không hỗ trợ thiết bị di động.</p>
+        </div>
+        <div id="main-content">
+            <main>
+                <header class="fixed-header">
+                    <div class="content">
+                        <nav class="navbar">
+                            <!-- logo -->
+                            <a href="#">
+                                <img
+                                    class="logo"
+                                    src="./asset/img/LOGO VINH QUANG_JPG-01-Photoroom.png"
+                                    alt="logo"
+                                />
+                            </a>
+                            <!-- Navigation -->
+                            <ul>
+                                <li><a href="#!">Home</a></li>
+                                <li><a href="./shop.html">Shop</a></li>
+                                <li><a href="#!">Wholesale</a></li>
+                                <li><a href="#!">Certifications</a></li>
+                                <li><a href="#!">Contact</a></li>
+                            </ul>
+                            <!-- Action -->
+                            <div class="actions">
+                                <a
+                                    href="#!"
+                                    class="actions-link"
+                                    onclick="openModal('loginModal')"
+                                    >Sign in</a
                                 >
-                                    ✕
-                                </button>
-                                <h2
-                                    style="
-                                        text-align: center;
-                                        margin-bottom: 10px;
-                                    "
+                                <a
+                                    href="#!"
+                                    class="btn actions-btn"
+                                    onclick="openModal('registerModal')"
+                                    >Sign up</a
                                 >
-                                    Welcome Back!
-                                </h2>
-                                <form
-                                    onsubmit="event.preventDefault(); handleLogin();"
-                                >
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                            >Email Address</label
-                                        >
-                                        <input
-                                            type="email"
-                                            class="form-input"
-                                            placeholder="name@example.com"
-                                            required
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                            >Password</label
-                                        >
-                                        <input
-                                            type="password"
-                                            class="form-input"
-                                            placeholder="••••••••"
-                                            required
-                                        />
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        class="btn-block btn-primary"
-                                    >
-                                        Log In
-                                    </button>
-                                </form>
-                                <p style="text-align: center; margin-top: 15px">
-                                    Don't have an account?
-                                    <a
-                                        href="#"
-                                        onclick="switchModal('loginModal', 'registerModal')"
-                                        style="color: blue"
-                                        >Sign up</a
-                                    >
-                                </p>
                             </div>
-                        </div>
-
-                        <!-- REGISTER MODAL -->
-                        <div id="registerModal" class="modal">
-                            <div
-                                class="modal-overlay"
-                                onclick="closeModal('registerModal')"
-                            ></div>
-                            <div class="modal-container">
-                                <button
-                                    class="close-btn"
-                                    onclick="closeModal('registerModal')"
-                                >
-                                    ✕
-                                </button>
-                                <h2
-                                    style="
-                                        text-align: center;
-                                        margin-bottom: 10px;
-                                    "
-                                >
-                                    Create Account
-                                </h2>
-                                <form
-                                    onsubmit="event.preventDefault(); handleRegister();"
-                                >
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                            >Full Name</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-input"
-                                            placeholder="John Doe"
-                                            required
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                            >Email Address</label
-                                        >
-                                        <input
-                                            type="email"
-                                            class="form-input"
-                                            placeholder="name@example.com"
-                                            required
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                            >Password</label
-                                        >
-                                        <input
-                                            type="password"
-                                            class="form-input"
-                                            placeholder="••••••••"
-                                            required
-                                        />
-                                    </div>
+                            <!-- LOGIN MODAL -->
+                            <div id="loginModal" class="modal">
+                                <div
+                                    class="modal-overlay"
+                                    onclick="closeModal('loginModal')"
+                                ></div>
+                                <div class="modal-container">
                                     <button
-                                        type="submit"
-                                        class="btn-block btn-success"
+                                        class="close-btn"
+                                        onclick="closeModal('loginModal')"
+                                    >
+                                        ✕
+                                    </button>
+                                    <h2
+                                        style="
+                                            text-align: center;
+                                            margin-bottom: 10px;
+                                        "
+                                    >
+                                        Welcome Back!
+                                    </h2>
+                                    <form
+                                        onsubmit="event.preventDefault(); handleLogin();"
+                                    >
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                >Email Address</label
+                                            >
+                                            <input
+                                                type="email"
+                                                class="form-input"
+                                                placeholder="name@example.com"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                >Password</label
+                                            >
+                                            <input
+                                                type="password"
+                                                class="form-input"
+                                                placeholder="••••••••"
+                                                required
+                                            />
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            class="btn-block btn-primary"
+                                        >
+                                            Log In
+                                        </button>
+                                    </form>
+                                    <p
+                                        style="
+                                            text-align: center;
+                                            margin-top: 15px;
+                                        "
+                                    >
+                                        Don't have an account?
+                                        <a
+                                            href="#"
+                                            onclick="switchModal('loginModal', 'registerModal')"
+                                            style="color: blue"
+                                            >Sign up</a
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- REGISTER MODAL -->
+                            <div id="registerModal" class="modal">
+                                <div
+                                    class="modal-overlay"
+                                    onclick="closeModal('registerModal')"
+                                ></div>
+                                <div class="modal-container">
+                                    <button
+                                        class="close-btn"
+                                        onclick="closeModal('registerModal')"
+                                    >
+                                        ✕
+                                    </button>
+                                    <h2
+                                        style="
+                                            text-align: center;
+                                            margin-bottom: 10px;
+                                        "
                                     >
                                         Create Account
-                                    </button>
-                                </form>
-                                <p style="text-align: center; margin-top: 15px">
-                                    Already have an account?
-                                    <a
-                                        href="#"
-                                        onclick="switchModal('registerModal', 'loginModal')"
-                                        style="color: blue"
-                                        >Log in now</a
+                                    </h2>
+                                    <form
+                                        onsubmit="event.preventDefault(); handleRegister();"
                                     >
-                                </p>
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                >Full Name</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="form-input"
+                                                placeholder="John Doe"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                >Email Address</label
+                                            >
+                                            <input
+                                                type="email"
+                                                class="form-input"
+                                                placeholder="name@example.com"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                >Password</label
+                                            >
+                                            <input
+                                                type="password"
+                                                class="form-input"
+                                                placeholder="••••••••"
+                                                required
+                                            />
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            class="btn-block btn-success"
+                                        >
+                                            Create Account
+                                        </button>
+                                    </form>
+                                    <p
+                                        style="
+                                            text-align: center;
+                                            margin-top: 15px;
+                                        "
+                                    >
+                                        Already have an account?
+                                        <a
+                                            href="#"
+                                            onclick="switchModal('registerModal', 'loginModal')"
+                                            style="color: blue"
+                                            >Log in now</a
+                                        >
+                                    </p>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- TOAST MESSAGE -->
-                        <div id="toast" class="toast">
-                            <span>✓</span>
-                            <span id="toastMessage">Notification</span>
-                        </div>
-                    </nav>
-                </div>
-            </header>
-            <!-- header -->
-            <div class="header">
-                <div class="content">
-                    <div class="hero">
-                        <div class="info">
-                            <p class="sub-title">Welcome to Vinh Quang Mask</p>
-                            <h1 class="title">Wear it all day, comfortably.</h1>
-                            <p class="desc">
-                                Experience the perfect blend of safety and
-                                softness. Our premium masks feature breathable
-                                fabric and a secure fit, designed to protect you
-                                and your family all day long.
-                            </p>
-                            <a href="./infomation.html" class="btn hero-cta"
-                                >More About Us</a
-                            >
-                        </div>
-                        <!-- src="./asset/img/hero.svg" -->
-                        <img
-                            class="hero-img"
-                            src="./asset/img/Blue Face Mask Required Flyer (1).svg"
-                            alt="et the best real estate deals first,"
-                        />
+                            <!-- TOAST MESSAGE -->
+                            <div id="toast" class="toast">
+                                <span>✓</span>
+                                <span id="toastMessage">Notification</span>
+                            </div>
+                        </nav>
                     </div>
-                </div>
-            </div>
-
-            <!-- clients -->
-            <div class="clients">
-                <div class="content">
-                    <div class="row">
-                        <!-- logo -->
-                        <img
-                            class="image-logo"
-                            src="./asset/img/LOGO VINH QUANG_JPG-01.svg"
-                            alt="Vinh Quang mask"
-                        />
-
-                        <!-- strars -->
-                        <div class="stars" style="display: flex">
-                            <img src="./asset/img/star.svg" alt="star" />
-                            <img src="./asset/img/star.svg" alt="star" />
-                            <img src="./asset/img/star.svg" alt="star" />
-                            <img src="./asset/img/star.svg" alt="star" />
-                            <img src="./asset/img/star.svg" alt="star" />
+                </header>
+                <!-- header -->
+                <div class="header">
+                    <div class="content">
+                        <div class="hero">
+                            <div class="info">
+                                <p class="sub-title">
+                                    Welcome to Vinh Quang Mask
+                                </p>
+                                <h1 class="title">
+                                    Wear it all day, comfortably.
+                                </h1>
+                                <p class="desc">
+                                    Experience the perfect blend of safety and
+                                    softness. Our premium masks feature
+                                    breathable fabric and a secure fit, designed
+                                    to protect you and your family all day long.
+                                </p>
+                                <a href="./infomation.html" class="btn hero-cta"
+                                    >More About Us</a
+                                >
+                            </div>
+                            <!-- src="./asset/img/hero.svg" -->
+                            <img
+                                class="hero-img"
+                                src="./asset/img/Blue Face Mask Required Flyer (1).svg"
+                                alt="et the best real estate deals first,"
+                            />
                         </div>
                     </div>
-                    <div class="row row-desc">
-                        <p class="desc">
-                            More than 45,000+ companies trust VinhQuangMask
-                        </p>
-                        <p class="desc">5 Star Ratings (2k+ Review)</p>
-                    </div>
-                    <div class="images">
-                        <a href="#!">
-                            <img
-                                src="./asset/img/meundies.svg"
-                                alt="meundies"
-                            />
-                        </a>
-                        <a href="#!">
-                            <img src="./asset/img/slack (1).svg" alt="slack" />
-                        </a>
-                        <a href="#!">
-                            <img src="./asset/img/amazon.svg" alt="amazon" />
-                        </a>
-                        <a href="#!">
-                            <img
-                                src="./asset/img/woocommaerce.svg"
-                                alt="woocommaerce"
-                            />
-                        </a>
-
-                        <a href="#!">
-                            <img
-                                src="./asset/img/sitepoint.svg"
-                                alt="meundies"
-                            />
-                        </a>
-                    </div>
                 </div>
-            </div>
 
-            <!-- guides-->
-            <div class="guides">
-                <div class="content">
-                    <h2 class="sub-title">How to Order?</h2>
-                    <p class="desc">
-                        Simple steps to get the best protection for yourself,
-                        your company, or your customers.
-                    </p>
-
-                    <!-- list guides -->
-                    <ul class="list-guides">
-                        <li class="guides-item">
-                            <img
-                                src="./asset/img/buyguides.svg"
-                                alt="buy"
-                                class="icon"
-                            />
-                            <h3 class="title">etail & Personal</h3>
-                            <a href="#!" class="link">
-                                <span>Shop Collections</span>
-                                <img
-                                    src="./asset/img/around-right.svg"
-                                    alt="around"
-                                    class="arrow"
-                                />
-                            </a>
-                        </li>
-                        <li class="guides-item">
-                            <img
-                                src="./asset/img/rent.svg"
-                                alt="buy"
-                                class="icon"
-                            />
-                            <h3 class="title">Wholesale & Bulk</h3>
-                            <a href="#!" class="link">
-                                <span>Get a Quote</span>
-                                <img
-                                    src="./asset/img/around-right.svg"
-                                    alt="around"
-                                    class="arrow"
-                                />
-                            </a>
-                        </li>
-                        <li class="guides-item">
-                            <img
-                                src="./asset/img/seller.svg"
-                                alt="buy"
-                                class="icon"
-                            />
-                            <h3 class="title">Distributors</h3>
-                            <a href="#!" class="link">
-                                <span>Become a Partner</span>
-                                <img
-                                    src="./asset/img/around-right.svg"
-                                    alt="around"
-                                    class="arrow"
-                                />
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="guides-cta">
-                        <a href="./shop.html" class="btn">View Store</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- featured -->
-            <div class="featured">
-                <div class="content">
-                    <header>
-                        <h2 class="sub-title">Featured Collections</h2>
+                <!-- clients -->
+                <div class="clients">
+                    <div class="content">
                         <div class="row">
-                            <p class="desc">
-                                High-quality protection for you and your family
-                            </p>
-                            <a href="./shop.html" class="link">
-                                <span>Shop Now</span>
-                                <img
-                                    src="./asset/img/around-right.svg"
-                                    alt="arood"
-                                    class="arrow"
-                                />
-                            </a>
-                        </div>
-                    </header>
-
-                    <div class="list">
-                        <!-- featured item_1 -->
-                        <div class="item">
-                            <a href="./shop.html">
-                                <img
-                                    src="./asset/img/facemark.jpg"
-                                    alt="facemask"
-                                    class="thumb"
-                                />
-                            </a>
-                            <div class="body">
-                                <h3 class="title">
-                                    <a href="./shop.html">Premium KF94 Mask</a>
-                                </h3>
-                                <p class="desc">
-                                    4D Design - Fits perfectly & Fashionable
-                                </p>
-                                <div class="info">
-                                    <img
-                                        src="./asset/img/bed.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">4 Layers</span>
-
-                                    <img
-                                        src="./asset/img/both.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">10 Pcs/P</span>
-
-                                    <img
-                                        src="./asset/img/sqst.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">BFE > 99%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- featured item_2 -->
-                        <div class="item">
-                            <a href="./shop.html">
-                                <img
-                                    src="./asset/img/facemask1.jpg"
-                                    alt="facemask"
-                                    class="thumb"
-                                />
-                            </a>
-                            <div class="body">
-                                <h3 class="title line-clamp">
-                                    <a href="./shop.html">Kids' Soft Mask</a>
-                                </h3>
-                                <p class="desc">
-                                    Gentle on skin - Easy to breathe
-                                </p>
-                                <div class="info">
-                                    <img
-                                        src="./asset/img/bed.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">3 Layers</span>
-
-                                    <img
-                                        src="./asset/img/both.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">50 Pcs/Box</span>
-
-                                    <img
-                                        src="./asset/img/sqst.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">Size S</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- featured item_3 -->
-                        <div class="item">
-                            <a href="./shop.html">
-                                <img
-                                    src="./asset/img/facemask3.jpg"
-                                    alt="facemask"
-                                    class="thumb"
-                                />
-                            </a>
-                            <div class="body">
-                                <h3 class="title">
-                                    <a href="./shop.html">Medical Blue Mask</a>
-                                </h3>
-                                <p class="desc">
-                                    Daily protection - Waterproof material
-                                </p>
-                                <div class="info">
-                                    <img
-                                        src="./asset/img/bed.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">4 Layers</span>
-
-                                    <img
-                                        src="./asset/img/both.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">50 Pcs/Box</span>
-
-                                    <img
-                                        src="./asset/img/sqst.svg"
-                                        alt="bed"
-                                        class="icon"
-                                    />
-                                    <span class="labe">ISO 13485</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- stats -->
-            <div class="stats">
-                <div class="content">
-                    <div class="row">
-                        <div class="img-block">
+                            <!-- logo -->
                             <img
-                                class="image"
-                                src="./asset/img/joshua-tsu-9Xrq31N8D5Y-unsplash.jpg"
-                                alt="face mask"
+                                class="image-logo"
+                                src="./asset/img/LOGO VINH QUANG_JPG-01.svg"
+                                alt="Vinh Quang mask"
                             />
 
-                            <!-- trend -->
-                            <div class="stats-trend">
-                                <div class="row">
-                                    <strong class="value">50,000+</strong>
-                                    <img
-                                        src="./asset/img/Vector 120.svg"
-                                        alt="Vector"
-                                        class="icon"
-                                    />
-                                </div>
-                                <p class="desc">
-                                    Happy customers trusting Vinh Quang Mask
-                                    daily
-                                </p>
-                                <div class="separate"></div>
-                                <div class="avatar-block">
-                                    <!-- <div class="avatar-group"> -->
-                                    <div class="avatar-group">
-                                        <img
-                                            src="./asset/img/hum1.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum2.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar-group">
-                                        <img
-                                            src="./asset/img/hum3.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum4.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum5.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum6.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar-group">
-                                        <img
-                                            src="./asset/img/hum7.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum8.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <div class="avatar avatar_1">v</div>
-                                    </div>
-                                    <div class="avatar-group">
-                                        <img
-                                            src="./asset/img/hum10.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum11.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum12.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum13.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar-group">
-                                        <img
-                                            src="./asset/img/hum14.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum15.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar-group">
-                                        <img
-                                            src="./asset/img/hum16.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum17.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                    </div>
-                                    <div class="avatar-group">
-                                        <img
-                                            src="./asset/img/hum4.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                        <img
-                                            src="./asset/img/hum19.jpg"
-                                            alt=""
-                                            class="avatar"
-                                        />
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
+                            <!-- strars -->
+                            <div class="stars" style="display: flex">
+                                <img src="./asset/img/star.svg" alt="star" />
+                                <img src="./asset/img/star.svg" alt="star" />
+                                <img src="./asset/img/star.svg" alt="star" />
+                                <img src="./asset/img/star.svg" alt="star" />
+                                <img src="./asset/img/star.svg" alt="star" />
                             </div>
                         </div>
-
-                        <div class="info">
-                            <h2 class="sub-title">
-                                You’ve found the protection you deserve.
-                            </h2>
+                        <div class="row row-desc">
                             <p class="desc">
-                                When you choose a mask, you’re not just covering
-                                your face; you are committing to safety for
-                                yourself and your loved ones.
+                                More than 45,000+ companies trust VinhQuangMask
                             </p>
+                            <p class="desc">5 Star Ratings (2k+ Review)</p>
                         </div>
-                    </div>
-                    <div class="row row-qty">
-                        <div class="qty-item">
-                            <strong class="qty">100%</strong>
-                            <p class="qty-desc">Certified Quality</p>
-                        </div>
+                        <div class="images">
+                            <a href="#!">
+                                <img
+                                    src="./asset/img/meundies.svg"
+                                    alt="meundies"
+                                />
+                            </a>
+                            <a href="#!">
+                                <img
+                                    src="./asset/img/slack (1).svg"
+                                    alt="slack"
+                                />
+                            </a>
+                            <a href="#!">
+                                <img
+                                    src="./asset/img/amazon.svg"
+                                    alt="amazon"
+                                />
+                            </a>
+                            <a href="#!">
+                                <img
+                                    src="./asset/img/woocommaerce.svg"
+                                    alt="woocommaerce"
+                                />
+                            </a>
 
-                        <div class="qty-item">
-                            <strong class="qty">1M+</strong>
-                            <p class="qty-desc">Masks Sold</p>
-                        </div>
-
-                        <div class="qty-item">
-                            <strong class="qty">99%</strong>
-                            <p class="qty-desc">Bacterial Filtration</p>
+                            <a href="#!">
+                                <img
+                                    src="./asset/img/sitepoint.svg"
+                                    alt="meundies"
+                                />
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- subscription -->
-            <div class="subscription">
-                <div class="content">
-                    <div class="body">
-                        <div class="info">
-                            <h2 class="sub-title line-clamp">
-                                Stay Safe & Save Money!
-                            </h2>
-                            <p class="desc line-clamp">
-                                Sign up to receive health tips, new arrivals,
-                                and exclusive discounts.
-                            </p>
-                            <a href="./getinfomation.html" class="btn"> Join Now </a>
-                        </div>
-                        <img
-                            src="./asset/img/phone.svg"
-                            alt="phone"
-                            class="image"
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <!-- footer -->
-            <footer class="footer">
-                <div class="content">
-                    <div class="row row-top">
-                        <!-- product -->
-                        <div class="column">
-                            <h3 class="heading">Product</h3>
-                            <ul class="list">
-                                <li class="item">
-                                    <a href="#!">Medical Masks</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">KF94 Collection</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">Kids' Masks</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">Best Sellers</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Resources -->
-                        <div class="column">
-                            <h3 class="heading">Resources</h3>
-                            <ul class="list">
-                                <li class="item">
-                                    <a href="#!">Track My Order</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">Shipping Policy</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">Certifications</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">Size Guide</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Company -->
-                        <div class="column">
-                            <h3 class="heading">Company</h3>
-                            <ul class="list">
-                                <li class="item">
-                                    <a href="#!">Wholesale / B2B</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">Terms of Service</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">Privacy Policy</a>
-                                </li>
-                                <li class="item">
-                                    <a href="#!">About Us</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Get in touch -->
-                        <div class="column">
-                            <h3 class="heading">Get in touch</h3>
-                            <p class="desc">
-                                Committed to protecting your health with
-                                high-quality standards. Contact us for bulk
-                                orders and support.
-                            </p>
-                            <div class="social">
-                                <a href="#!" class="social-link">
-                                    <img
-                                        src="./asset/img/facebook.svg"
-                                        alt=""
-                                    />
-                                </a>
-                                <a href="#!" class="social-link">
-                                    <img src="./asset/img/triter.svg" alt="" />
-                                </a>
-                                <a href="#!" class="social-link">
-                                    <img src="./asset/img/in.svg" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-bottom">
-                        <img
-                            src="./asset/img/LOGO VINH QUANG_JPG-01.svg"
-                            alt=""
-                            class="logo"
-                        />
-                        <p class="copyright">
-                            Copyright 2020.com, All rights reserved.
+                <!-- guides-->
+                <div class="guides">
+                    <div class="content">
+                        <h2 class="sub-title">How to Order?</h2>
+                        <p class="desc">
+                            Simple steps to get the best protection for
+                            yourself, your company, or your customers.
                         </p>
+
+                        <!-- list guides -->
+                        <ul class="list-guides">
+                            <li class="guides-item">
+                                <img
+                                    src="./asset/img/buyguides.svg"
+                                    alt="buy"
+                                    class="icon"
+                                />
+                                <h3 class="title">etail & Personal</h3>
+                                <a href="#!" class="link">
+                                    <span>Shop Collections</span>
+                                    <img
+                                        src="./asset/img/around-right.svg"
+                                        alt="around"
+                                        class="arrow"
+                                    />
+                                </a>
+                            </li>
+                            <li class="guides-item">
+                                <img
+                                    src="./asset/img/rent.svg"
+                                    alt="buy"
+                                    class="icon"
+                                />
+                                <h3 class="title">Wholesale & Bulk</h3>
+                                <a href="#!" class="link">
+                                    <span>Get a Quote</span>
+                                    <img
+                                        src="./asset/img/around-right.svg"
+                                        alt="around"
+                                        class="arrow"
+                                    />
+                                </a>
+                            </li>
+                            <li class="guides-item">
+                                <img
+                                    src="./asset/img/seller.svg"
+                                    alt="buy"
+                                    class="icon"
+                                />
+                                <h3 class="title">Distributors</h3>
+                                <a href="#!" class="link">
+                                    <span>Become a Partner</span>
+                                    <img
+                                        src="./asset/img/around-right.svg"
+                                        alt="around"
+                                        class="arrow"
+                                    />
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="guides-cta">
+                            <a href="./shop.html" class="btn">View Store</a>
+                        </div>
                     </div>
                 </div>
-            </footer>
-        </main>
+
+                <!-- featured -->
+                <div class="featured">
+                    <div class="content">
+                        <header>
+                            <h2 class="sub-title">Featured Collections</h2>
+                            <div class="row">
+                                <p class="desc">
+                                    High-quality protection for you and your
+                                    family
+                                </p>
+                                <a href="./shop.html" class="link">
+                                    <span>Shop Now</span>
+                                    <img
+                                        src="./asset/img/around-right.svg"
+                                        alt="arood"
+                                        class="arrow"
+                                    />
+                                </a>
+                            </div>
+                        </header>
+
+                        <div class="list">
+                            <!-- featured item_1 -->
+                            <div class="item">
+                                <a href="./shop.html">
+                                    <img
+                                        src="./asset/img/facemark.jpg"
+                                        alt="facemask"
+                                        class="thumb"
+                                    />
+                                </a>
+                                <div class="body">
+                                    <h3 class="title">
+                                        <a href="./shop.html"
+                                            >Premium KF94 Mask</a
+                                        >
+                                    </h3>
+                                    <p class="desc">
+                                        4D Design - Fits perfectly & Fashionable
+                                    </p>
+                                    <div class="info">
+                                        <img
+                                            src="./asset/img/bed.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">4 Layers</span>
+
+                                        <img
+                                            src="./asset/img/both.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">10 Pcs/P</span>
+
+                                        <img
+                                            src="./asset/img/sqst.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">BFE > 99%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- featured item_2 -->
+                            <div class="item">
+                                <a href="./shop.html">
+                                    <img
+                                        src="./asset/img/facemask1.jpg"
+                                        alt="facemask"
+                                        class="thumb"
+                                    />
+                                </a>
+                                <div class="body">
+                                    <h3 class="title line-clamp">
+                                        <a href="./shop.html"
+                                            >Kids' Soft Mask</a
+                                        >
+                                    </h3>
+                                    <p class="desc">
+                                        Gentle on skin - Easy to breathe
+                                    </p>
+                                    <div class="info">
+                                        <img
+                                            src="./asset/img/bed.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">3 Layers</span>
+
+                                        <img
+                                            src="./asset/img/both.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">50 Pcs/Box</span>
+
+                                        <img
+                                            src="./asset/img/sqst.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">Size S</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- featured item_3 -->
+                            <div class="item">
+                                <a href="./shop.html">
+                                    <img
+                                        src="./asset/img/facemask3.jpg"
+                                        alt="facemask"
+                                        class="thumb"
+                                    />
+                                </a>
+                                <div class="body">
+                                    <h3 class="title">
+                                        <a href="./shop.html"
+                                            >Medical Blue Mask</a
+                                        >
+                                    </h3>
+                                    <p class="desc">
+                                        Daily protection - Waterproof material
+                                    </p>
+                                    <div class="info">
+                                        <img
+                                            src="./asset/img/bed.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">4 Layers</span>
+
+                                        <img
+                                            src="./asset/img/both.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">50 Pcs/Box</span>
+
+                                        <img
+                                            src="./asset/img/sqst.svg"
+                                            alt="bed"
+                                            class="icon"
+                                        />
+                                        <span class="labe">ISO 13485</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- stats -->
+                <div class="stats">
+                    <div class="content">
+                        <div class="row">
+                            <div class="img-block">
+                                <img
+                                    class="image"
+                                    src="./asset/img/joshua-tsu-9Xrq31N8D5Y-unsplash.jpg"
+                                    alt="face mask"
+                                />
+
+                                <!-- trend -->
+                                <div class="stats-trend">
+                                    <div class="row">
+                                        <strong class="value">50,000+</strong>
+                                        <img
+                                            src="./asset/img/Vector 120.svg"
+                                            alt="Vector"
+                                            class="icon"
+                                        />
+                                    </div>
+                                    <p class="desc">
+                                        Happy customers trusting Vinh Quang Mask
+                                        daily
+                                    </p>
+                                    <div class="separate"></div>
+                                    <div class="avatar-block">
+                                        <!-- <div class="avatar-group"> -->
+                                        <div class="avatar-group">
+                                            <img
+                                                src="./asset/img/hum1.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum2.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                        </div>
+                                        <div class="avatar-group">
+                                            <img
+                                                src="./asset/img/hum3.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum4.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum5.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum6.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                        </div>
+                                        <div class="avatar-group">
+                                            <img
+                                                src="./asset/img/hum7.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum8.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <div class="avatar avatar_1">v</div>
+                                        </div>
+                                        <div class="avatar-group">
+                                            <img
+                                                src="./asset/img/hum10.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum11.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum12.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum13.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                        </div>
+                                        <div class="avatar-group">
+                                            <img
+                                                src="./asset/img/hum14.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum15.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                        </div>
+                                        <div class="avatar-group">
+                                            <img
+                                                src="./asset/img/hum16.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum17.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                        </div>
+                                        <div class="avatar-group">
+                                            <img
+                                                src="./asset/img/hum4.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                            <img
+                                                src="./asset/img/hum19.jpg"
+                                                alt=""
+                                                class="avatar"
+                                            />
+                                        </div>
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info">
+                                <h2 class="sub-title">
+                                    You’ve found the protection you deserve.
+                                </h2>
+                                <p class="desc">
+                                    When you choose a mask, you’re not just
+                                    covering your face; you are committing to
+                                    safety for yourself and your loved ones.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row row-qty">
+                            <div class="qty-item">
+                                <strong class="qty">100%</strong>
+                                <p class="qty-desc">Certified Quality</p>
+                            </div>
+
+                            <div class="qty-item">
+                                <strong class="qty">1M+</strong>
+                                <p class="qty-desc">Masks Sold</p>
+                            </div>
+
+                            <div class="qty-item">
+                                <strong class="qty">99%</strong>
+                                <p class="qty-desc">Bacterial Filtration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- subscription -->
+                <div class="subscription">
+                    <div class="content">
+                        <div class="body">
+                            <div class="info">
+                                <h2 class="sub-title line-clamp">
+                                    Stay Safe & Save Money!
+                                </h2>
+                                <p class="desc line-clamp">
+                                    Sign up to receive health tips, new
+                                    arrivals, and exclusive discounts.
+                                </p>
+                                <a href="./getinfomation.html" class="btn">
+                                    Join Now
+                                </a>
+                            </div>
+                            <img
+                                src="./asset/img/phone.svg"
+                                alt="phone"
+                                class="image"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <footer class="footer">
+                    <div class="content">
+                        <div class="row row-top">
+                            <!-- product -->
+                            <div class="column">
+                                <h3 class="heading">Product</h3>
+                                <ul class="list">
+                                    <li class="item">
+                                        <a href="#!">Medical Masks</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">KF94 Collection</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">Kids' Masks</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">Best Sellers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Resources -->
+                            <div class="column">
+                                <h3 class="heading">Resources</h3>
+                                <ul class="list">
+                                    <li class="item">
+                                        <a href="#!">Track My Order</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">Shipping Policy</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">Certifications</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">Size Guide</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Company -->
+                            <div class="column">
+                                <h3 class="heading">Company</h3>
+                                <ul class="list">
+                                    <li class="item">
+                                        <a href="#!">Wholesale / B2B</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">Terms of Service</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">Privacy Policy</a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#!">About Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Get in touch -->
+                            <div class="column">
+                                <h3 class="heading">Get in touch</h3>
+                                <p class="desc">
+                                    Committed to protecting your health with
+                                    high-quality standards. Contact us for bulk
+                                    orders and support.
+                                </p>
+                                <div class="social">
+                                    <a href="#!" class="social-link">
+                                        <img
+                                            src="./asset/img/facebook.svg"
+                                            alt=""
+                                        />
+                                    </a>
+                                    <a href="#!" class="social-link">
+                                        <img
+                                            src="./asset/img/triter.svg"
+                                            alt=""
+                                        />
+                                    </a>
+                                    <a href="#!" class="social-link">
+                                        <img src="./asset/img/in.svg" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-bottom">
+                            <img
+                                src="./asset/img/LOGO VINH QUANG_JPG-01.svg"
+                                alt=""
+                                class="logo"
+                            />
+                            <p class="copyright">
+                                Copyright 2020.com, All rights reserved.
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div>
     </body>
 </html>
