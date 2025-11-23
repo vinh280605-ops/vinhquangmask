@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shop - VQ Mask | Premium Protection</title>
+
+        <!-- Fonts: Poppins -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./asset/css/shop.css" />
+
+        <!-- Icons: Phosphor Icons -->
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    </head>
+    <body>
+        <!-- 1. Top Notification Bar -->
+        <div class="top-bar">
+            <span>🚚 Free shipping on orders over 5 boxes!</span>
+            <span class="divider">|</span>
+            <span style="color: var(--brand-200); margin-left: 0.5rem"
+                >🔥 Family Combo: Save 20% today</span
+            >
+        </div>
+
+        <!-- 2. Navigation -->
+        <nav class="main-nav">
+            <!-- Search Overlay -->
+            <div id="search-overlay" class="search-overlay">
+                <div class="search-box">
+                    <i class="ph ph-magnifying-glass search-icon"></i>
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Search for masks (e.g., KF94, Kids, Black)..."
+                        onkeydown="handleSearch(event)"
+                    />
+                    <button onclick="toggleSearch()" class="close-icon">
+                        <i class="ph ph-x"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="container nav-content">
+                <a href="./index.html">
+                    <div class="logo" onclick="window.location.href='#'">
+                        VQ<span>MASK</span>
+                    </div>
+                </a>
+
+                <div class="nav-links">
+                    <a href="./index.html" class="">Home</a>
+                    <a href="#" class="active">Shop</a>
+                    <a href="#">Wholesale</a>
+                    <a href="./infomation.html">About Us</a>
+                </div>
+
+                <div class="nav-actions">
+                    <button onclick="toggleSearch()" class="icon-btn">
+                        <i class="ph ph-magnifying-glass"></i>
+                    </button>
+                    <button onclick="toggleCart()" class="icon-btn">
+                        <i class="ph ph-shopping-cart"></i>
+                        <span id="cart-count" class="badge">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 3. Hero Section -->
+        <header class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <span class="tag-pill">NEW COLLECTION</span>
+                    <h1>Breathe Easy, <br />Live Freely.</h1>
+                    <p>
+                        Experience the perfect balance of protection and comfort
+                        with our new VQ 3D Slim Fit Series.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#product-grid" class="btn btn-primary"
+                            >Shop Now</a
+                        >
+                        <a href="./infomation.html" class="btn btn-outline"
+                            >Learn More</a
+                        >
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-img-box">
+                        <div class="hero-img-bg"></div>
+                        <div class="hero-img-front">
+                            <img
+                                src="./asset/img-infomation/banner.jpg"
+                                alt="Hero Banner"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 4. Main Content Wrapper -->
+        <div class="layout-wrapper">
+            <!-- Sidebar Filter -->
+            <aside class="sidebar">
+                <div class="filter-box">
+                    <div class="filter-header">
+                        <div class="filter-title">
+                            <i class="ph ph-faders"></i> Filters
+                        </div>
+                        <button onclick="resetFilters()" class="reset-btn">
+                            Reset
+                        </button>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="filter-group">
+                        <div class="group-title">Category</div>
+                        <label class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="cat-adult"
+                                value="adult"
+                                class="filter-checkbox"
+                            />
+                            <span>Adults</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="cat-kids"
+                                value="kids"
+                                class="filter-checkbox"
+                            />
+                            <span
+                                >Kids
+                                <span
+                                    style="
+                                        background: var(--brand-100);
+                                        color: var(--brand-700);
+                                        font-size: 0.7em;
+                                        padding: 2px 4px;
+                                        border-radius: 4px;
+                                        margin-left: 4px;
+                                    "
+                                    >New</span
+                                ></span
+                            >
+                        </label>
+                    </div>
+
+                    <!-- Type -->
+                    <div class="filter-group">
+                        <div class="group-title">Mask Type</div>
+                        <label class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="type-kf94"
+                                value="kf94"
+                                class="filter-checkbox"
+                            />
+                            <span class="flex items-center gap-2"
+                                ><i
+                                    class="ph ph-shield-check"
+                                    style="color: var(--slate-400)"
+                                ></i>
+                                KF94 Standard</span
+                            >
+                        </label>
+                        <label class="checkbox-item">
+                            <input
+                                type="checkbox"
+                                id="type-3d"
+                                value="3d"
+                                class="filter-checkbox"
+                            />
+                            <span class="flex items-center gap-2"
+                                ><i
+                                    class="ph ph-cube"
+                                    style="color: var(--slate-400)"
+                                ></i>
+                                3D Fit</span
+                            >
+                        </label>
+                    </div>
+
+                    <div class="promo-card">
+                        <i class="ph ph-package"></i>
+                        <p
+                            style="
+                                font-weight: 600;
+                                font-size: 0.9rem;
+                                margin-bottom: 0.25rem;
+                            "
+                        >
+                            Need Bulk Order?
+                        </p>
+                        <p
+                            style="
+                                font-size: 0.75rem;
+                                color: var(--brand-200);
+                                margin-bottom: 0.5rem;
+                            "
+                        >
+                            Get special pricing for 50+ boxes.
+                        </p>
+                        <button class="promo-btn">Contact Sales</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Products -->
+            <main class="main-content">
+                <!-- Bundles Section -->
+                <section id="bundles-section" style="margin-bottom: 3rem">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Value Bundles</h2>
+                            <p class="section-subtitle">
+                                Save up to 20% with our family packs
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bundle-grid">
+                        <!-- Bundle 1 -->
+                        <div
+                            class="card bundle-card product-card"
+                            data-category="adult kids"
+                            data-type="combo"
+                            onclick="openProductModal('Family Protection Combo', 45.00, './asset/img-infomation/khautrang4loptrang.png', 'Includes 50 Adult + 20 Kids Masks.')"
+                        >
+                            <div class="card-img-wrapper">
+                                <img
+                                    src="./asset/img-infomation/khautrang4loptrang.png"
+                                    class="card-img main"
+                                />
+                                <img
+                                    src="https://placehold.co/400x400/0284c7/ffffff?text=Family+Wearing+Masks"
+                                    class="card-img hover"
+                                />
+                                <span class="card-badge sale">-20%</span>
+                            </div>
+                            <div class="card-body">
+                                <h3
+                                    class="card-title"
+                                    style="font-size: 1.1rem"
+                                >
+                                    Family Protection Combo
+                                </h3>
+                                <div class="card-price-row">
+                                    <span class="price">$45.00</span>
+                                    <span class="price-old">$56.00</span>
+                                </div>
+                                <button
+                                    onclick="event.stopPropagation(); addToCart('Family Protection Combo', 45.00, './asset/img-infomation/khautrang4loptrang.png')"
+                                    class="btn btn-primary w-full text-sm"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Bundle 2 -->
+                        <div
+                            class="card bundle-card product-card"
+                            data-category="adult kids"
+                            data-type="combo"
+                            onclick="openProductModal('Mom & Kids Set', 25.00, './asset/img-infomation/monkids.jpeg', 'Perfect matching set for mom and child.')"
+                        >
+                            <div class="card-img-wrapper">
+                                <img
+                                    src="./asset/img-infomation/monkids.jpeg"
+                                    class="card-img main"
+                                />
+                                <img
+                                    src="https://placehold.co/400x400/9333ea/ffffff?text=Mom+And+Kid"
+                                    class="card-img hover"
+                                />
+                            </div>
+                            <div class="card-body">
+                                <h3
+                                    class="card-title"
+                                    style="font-size: 1.1rem"
+                                >
+                                    Mom & Kids Set
+                                </h3>
+                                <div class="card-price-row">
+                                    <span class="price">$25.00</span>
+                                </div>
+                                <button
+                                    onclick="event.stopPropagation(); addToCart('Mom & Kids Set', 25.00, './asset/img-infomation/monkids.jpeg')"
+                                    class="btn btn-primary w-full text-sm"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- All Products -->
+                <section>
+                    <h2 class="section-title" style="margin-bottom: 1.5rem">
+                        All Products
+                    </h2>
+                    <div id="product-grid" class="product-grid">
+                        <!-- KF94 White -->
+                        <div
+                            class="card product-card"
+                            data-category="adult"
+                            data-type="kf94"
+                            onclick="openProductModal('VQ Mask KF94 Premium - White', 5.00, './asset/img-infomation/masks-blue-11.jpg')"
+                        >
+                            <div class="card-img-wrapper">
+                                <img
+                                    src="./asset/img-infomation/masks-blue-11.jpg"
+                                    class="card-img main"
+                                />
+                                <img
+                                    src="https://placehold.co/400x400/f1f5f9/333333?text=On+Face+View"
+                                    class="card-img hover"
+                                />
+                                <button
+                                    onclick="event.stopPropagation(); addToCart('VQ Mask KF94 Premium - White', 5.00, './asset/img-infomation/masks-blue-11.jpg')"
+                                    class="quick-add-btn"
+                                >
+                                    <i class="ph ph-shopping-cart-simple"></i>
+                                    Quick Add
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-cat">Adult • KF94</div>
+                                <h3 class="card-title">
+                                    VQ Mask KF94 Premium - White
+                                </h3>
+                                <div class="card-price-row">
+                                    <span class="price"
+                                        >$5.00
+                                        <span class="price-unit"
+                                            >/ box</span
+                                        ></span
+                                    >
+                                </div>
+                                <span class="bulk-tag">Bulk: $3.50</span>
+                            </div>
+                        </div>
+
+                        <!-- 3D Black -->
+                        <div
+                            class="card product-card"
+                            data-category="adult"
+                            data-type="3d"
+                            onclick="openProductModal('VQ 3D Slim Fit - Black', 6.00, './asset/img-infomation/MSK_SOLID_BLACK_SM_S__11253.jpg')"
+                        >
+                            <div class="card-img-wrapper">
+                                <img
+                                    src="./asset/img-infomation/MSK_SOLID_BLACK_SM_S__11253.jpg"
+                                    class="card-img main"
+                                />
+                                <img
+                                    src="https://placehold.co/400x400/000000/ffffff?text=On+Face+View"
+                                    class="card-img hover"
+                                />
+                                <button
+                                    onclick="event.stopPropagation(); addToCart('VQ 3D Slim Fit - Black', 6.00, './asset/img-infomation/MSK_SOLID_BLACK_SM_S__11253.jpg')"
+                                    class="quick-add-btn"
+                                >
+                                    <i class="ph ph-shopping-cart-simple"></i>
+                                    Quick Add
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-cat">Adult • 3D Fit</div>
+                                <h3 class="card-title">
+                                    VQ 3D Slim Fit - Black
+                                </h3>
+                                <div class="card-price-row">
+                                    <span class="price"
+                                        >$6.00
+                                        <span class="price-unit"
+                                            >/ box</span
+                                        ></span
+                                    >
+                                </div>
+                                <span class="bulk-tag">Bulk: $4.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Pink KF94 -->
+                        <div
+                            class="card product-card"
+                            data-category="adult"
+                            data-type="kf94"
+                            onclick="openProductModal('VQ KF94 - Soft Pink', 5.00, './asset/img-infomation/istockphoto-1208986344-612x612.jpg')"
+                        >
+                            <div class="card-img-wrapper">
+                                <img
+                                    src="./asset/img-infomation/istockphoto-1208986344-612x612.jpg"
+                                    class="card-img main"
+                                />
+                                <img
+                                    src="https://placehold.co/400x400/db2777/ffffff?text=On+Face+View"
+                                    class="card-img hover"
+                                />
+                                <span class="card-badge">Best Seller</span>
+                                <button
+                                    onclick="event.stopPropagation(); addToCart('VQ KF94 - Soft Pink', 5.00, './asset/img-infomation/istockphoto-1208986344-612x612.jpg')"
+                                    class="quick-add-btn"
+                                >
+                                    <i class="ph ph-shopping-cart-simple"></i>
+                                    Quick Add
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-cat">Adult • KF94</div>
+                                <h3 class="card-title">VQ KF94 - Soft Pink</h3>
+                                <div class="card-price-row">
+                                    <span class="price"
+                                        >$5.00
+                                        <span class="price-unit"
+                                            >/ box</span
+                                        ></span
+                                    >
+                                </div>
+                                <span class="bulk-tag">Bulk: $3.50</span>
+                            </div>
+                        </div>
+
+                        <!-- Dino Kids -->
+                        <div
+                            class="card product-card"
+                            data-category="kids"
+                            data-type="3d"
+                            onclick="openProductModal('Dino Adventure 3D Mask', 5.50, './asset/img-infomation/khautrang4loptrang.png')"
+                        >
+                            <div class="card-img-wrapper">
+                                <img
+                                    src="./asset/img-infomation/khautrang4loptrang.png"
+                                    class="card-img main"
+                                />
+                                <img
+                                    src="https://placehold.co/400x400/ea580c/ffffff?text=Kid+Smiling"
+                                    class="card-img hover"
+                                />
+                                <button
+                                    onclick="event.stopPropagation(); addToCart('Dino Adventure 3D Mask', 5.50, './asset/img-infomation/khautrang4loptrang.png')"
+                                    class="quick-add-btn"
+                                >
+                                    <i class="ph ph-shopping-cart-simple"></i>
+                                    Quick Add
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-cat">Kids • 3D Fit</div>
+                                <h3 class="card-title">
+                                    Dino Adventure 3D Mask
+                                </h3>
+                                <div class="card-price-row">
+                                    <span class="price"
+                                        >$5.50
+                                        <span class="price-unit"
+                                            >/ box</span
+                                        ></span
+                                    >
+                                </div>
+                                <span class="bulk-tag">Bulk: $4.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Princess Kids -->
+                        <div
+                            class="card product-card"
+                            data-category="kids"
+                            data-type="kf94"
+                            onclick="openProductModal('Princess Pink KF94', 5.50, './asset/img-infomation/vinhquangmask.png')"
+                        >
+                            <div class="card-img-wrapper">
+                                <img
+                                    src="./asset/img-infomation/vinhquangmask.png"
+                                    class="card-img main"
+                                />
+                                <img
+                                    src="https://placehold.co/400x400/d946ef/ffffff?text=Kid+Smiling"
+                                    class="card-img hover"
+                                />
+                                <button
+                                    onclick="event.stopPropagation(); addToCart('Princess Pink KF94', 5.50, './asset/img-infomation/vinhquangmask.png')"
+                                    class="quick-add-btn"
+                                >
+                                    <i class="ph ph-shopping-cart-simple"></i>
+                                    Quick Add
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-cat">Kids • KF94</div>
+                                <h3 class="card-title">Princess Pink KF94</h3>
+                                <div class="card-price-row">
+                                    <span class="price"
+                                        >$5.50
+                                        <span class="price-unit"
+                                            >/ box</span
+                                        ></span
+                                    >
+                                </div>
+                                <span class="bulk-tag">Bulk: $4.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- 5. Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <h3>VQ MASK</h3>
+                <div class="footer-links">
+                    <a href="#">Shipping Policy</a>
+                    <a href="#">Wholesale</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <p class="copyright">© 2023 VQ Mask. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- PRODUCT DETAIL MODAL -->
+        <div id="product-modal" class="modal-overlay">
+            <div class="modal-container">
+                <button onclick="closeModal()" class="modal-close">
+                    <i class="ph ph-x"></i>
+                </button>
+                <div class="modal-img-box">
+                    <img id="modal-img" src="" alt="Product Detail" />
+                </div>
+                <div class="modal-info">
+                    <div class="modal-tag">Premium Quality</div>
+                    <h2 id="modal-title" class="modal-title">Product Name</h2>
+                    <div class="modal-price-row">
+                        <span id="modal-price" class="modal-price">$5.00</span>
+                        <span class="stock-badge">In Stock</span>
+                    </div>
+                    <div class="modal-desc">
+                        <p id="modal-desc" style="margin-bottom: 1rem">
+                            Experience premium protection designed for all-day
+                            comfort.
+                        </p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="ph ph-ear"></i>
+                                <div class="feature-text">
+                                    <strong>Pain-Free Ear Loops</strong>
+                                    <p>
+                                        Ultra-soft elastic bands designed to
+                                        reduce pressure.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="ph ph-wind"></i>
+                                <div class="feature-text">
+                                    <strong>Advanced Filtration</strong>
+                                    <p>
+                                        4-Layer protection system effectively
+                                        filters out fine dust.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="ph ph-smiley"></i>
+                                <div class="feature-text">
+                                    <strong>Breathable 3D Design</strong>
+                                    <p>
+                                        Creates space for breathing and prevents
+                                        lipstick smudging.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <div class="qty-selector">
+                            <button class="qty-btn" onclick="updateQty(-1)">
+                                <i class="ph ph-minus"></i>
+                            </button>
+                            <span id="modal-qty" class="qty-val">1</span>
+                            <button class="qty-btn" onclick="updateQty(1)">
+                                <i class="ph ph-plus"></i>
+                            </button>
+                        </div>
+                        <button
+                            onclick="addToCartFromModal()"
+                            class="add-cart-btn"
+                        >
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CART SIDEBAR & CHECKOUT -->
+        <div
+            id="cart-overlay"
+            onclick="toggleCart()"
+            class="cart-overlay"
+        ></div>
+        <div id="cart-sidebar" class="cart-sidebar">
+            <!-- Header -->
+            <div class="cart-header">
+                <h2 class="cart-title">
+                    <i class="ph ph-shopping-bag"></i> Your Cart
+                    <span
+                        id="cart-total-count"
+                        style="
+                            font-weight: 400;
+                            font-size: 0.9rem;
+                            color: var(--slate-500);
+                        "
+                        >(0 items)</span
+                    >
+                </h2>
+                <button
+                    onclick="toggleCart()"
+                    style="
+                        padding: 0.5rem;
+                        font-size: 1.2rem;
+                        color: var(--slate-500);
+                    "
+                >
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+
+            <!-- VIEW 1: Items -->
+            <div id="cart-view-items" class="cart-content">
+                <div id="cart-items-container" style="flex: 1">
+                    <div class="empty-cart">
+                        <i class="ph ph-shopping-cart"></i>
+                        <p>Your cart is empty.</p>
+                        <button
+                            onclick="toggleCart()"
+                            style="
+                                margin-top: 1rem;
+                                color: var(--brand-600);
+                                font-weight: 600;
+                                text-decoration: underline;
+                            "
+                        >
+                            Start Shopping
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-footer">
+                    <div class="subtotal-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal" class="subtotal-val"
+                            >$0.00</span
+                        >
+                    </div>
+                    <button
+                        onclick="showCheckout()"
+                        id="btn-checkout"
+                        class="checkout-btn"
+                        disabled
+                    >
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIEW 2: Checkout -->
+            <div id="cart-view-checkout" class="cart-content checkout-view">
+                <div onclick="hideCheckout()" class="back-link">
+                    <i class="ph ph-arrow-left"></i> Back to Cart
+                </div>
+                <h3
+                    style="
+                        font-size: 1.25rem;
+                        font-weight: 700;
+                        margin-bottom: 1.5rem;
+                    "
+                >
+                    Secure Checkout
+                </h3>
+
+                <form id="checkout-form" onsubmit="processPayment(event)">
+                    <div class="form-group">
+                        <label class="form-label">Contact Info</label>
+                        <input
+                            type="email"
+                            required
+                            placeholder="Email Address"
+                            class="form-input"
+                        />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1">
+                            <label class="form-label">First Name</label>
+                            <input
+                                type="text"
+                                required
+                                placeholder="John"
+                                class="form-input"
+                            />
+                        </div>
+                        <div class="form-group" style="flex: 1">
+                            <label class="form-label">Last Name</label>
+                            <input
+                                type="text"
+                                required
+                                placeholder="Doe"
+                                class="form-input"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Shipping Address</label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="123 Main St, Apt 4B"
+                            class="form-input"
+                            style="margin-bottom: 0.5rem"
+                        />
+                        <div class="form-row">
+                            <input
+                                type="text"
+                                required
+                                placeholder="City"
+                                class="form-input"
+                            />
+                            <input
+                                type="text"
+                                required
+                                placeholder="Zip Code"
+                                class="form-input"
+                            />
+                        </div>
+                    </div>
+                    <div
+                        class="form-group"
+                        style="
+                            border-top: 1px solid var(--slate-100);
+                            padding-top: 1rem;
+                        "
+                    >
+                        <label class="form-label">Payment Details</label>
+                        <div class="card-input-box">
+                            <div class="card-input-row">
+                                <i
+                                    class="ph ph-credit-card"
+                                    style="
+                                        font-size: 1.5rem;
+                                        color: var(--slate-400);
+                                    "
+                                ></i>
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="Card Number"
+                                    class="card-input"
+                                    maxlength="19"
+                                />
+                            </div>
+                            <div
+                                class="form-row"
+                                style="
+                                    border-top: 1px solid var(--slate-200);
+                                    padding-top: 0.75rem;
+                                "
+                            >
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="MM/YY"
+                                    class="card-input"
+                                />
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="CVC"
+                                    class="card-input"
+                                    style="text-align: right"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subtotal-row" style="margin-top: 1rem">
+                        <span>Total</span>
+                        <span id="checkout-total">$0.00</span>
+                    </div>
+                    <button type="submit" id="btn-pay" class="checkout-btn">
+                        Pay Now
+                    </button>
+                </form>
+            </div>
+
+            <!-- VIEW 3: Success -->
+            <div id="cart-view-success" class="cart-content success-view">
+                <div class="success-icon"><i class="ph ph-check"></i></div>
+                <h3
+                    style="
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        margin-bottom: 0.5rem;
+                    "
+                >
+                    Order Confirmed!
+                </h3>
+                <p style="color: var(--slate-500); margin-bottom: 2rem">
+                    Thank you for your purchase. We've sent a confirmation email
+                    to you.
+                </p>
+                <button onclick="resetCartAndClose()" class="btn btn-primary">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="toast">Added to cart successfully!</div>
+
+        <!-- JavaScript functionality -->
+        <script src="./asset/js/shop.js"></script>
+    </body>
+</html>
